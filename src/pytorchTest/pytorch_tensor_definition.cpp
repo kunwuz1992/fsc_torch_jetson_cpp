@@ -22,6 +22,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 int main()
 {
-    torch::Tensor tensor = torch::rand({2, 3});
-    std::cout << tensor << std::endl;
+    // define a random tensor (1x2 matrix)
+    torch::Tensor a = torch::rand({1, 2});
+    std::cout << a << '\n';
+    // define a tensor with specific data
+    torch::Tensor b = torch::tensor({1.0, 1.0});
+    // adding two tensors
+    torch::Tensor c = a + b;
+    std::cout << c << '\n';
+    // get the size of a tensor
+    std::cout << a.sizes() << '\n';
+    // accessing tensor elements
+    double c0 = c[0][0].item<double>();
+    std::cout << c0 << '\n';
+    return 0;
 }

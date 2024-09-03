@@ -1,6 +1,6 @@
-add_executable(pytorch_test_1 pytorch_test_1.cpp)
-target_link_libraries(pytorch_test_1 "${TORCH_LIBRARIES}")
-set_property(TARGET pytorch_test_1  PROPERTY CXX_STANDARD 17)
+add_executable(pytorch_tensor_definition pytorch_tensor_definition.cpp)
+target_link_libraries(pytorch_tensor_definition "${TORCH_LIBRARIES}")
+set_property(TARGET pytorch_tensor_definition PROPERTY CXX_STANDARD 17)
 
 add_executable(pytorch_load_test pytorch_load_test.cpp)
 target_link_libraries(pytorch_load_test "${TORCH_LIBRARIES}")

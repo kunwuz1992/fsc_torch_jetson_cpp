@@ -34,4 +34,4 @@ Dr. Longhao Qian
 
 # Libtorch documentation
 
-- libtorch documentation is found in this link.
+- using libtorch to load pytorch model is in this [link](https://pytorch.org/tutorials/advanced/cpp_export.html).

@@ -17,8 +17,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *************************************************************/
 
-// https://pytorch.org/tutorials/advanced/cpp_export.html
-
 #include <torch/script.h>  // One-stop header.
 #include <torch/torch.h>
 #include <iostream>
@@ -33,19 +31,17 @@ int main(int argc, const char *argv[])
     // }
 
     torch::DeviceType device_type;
-    if (torch::cuda::is_available() ) {
-        std::cout<<"cuda is avaliable!\n";
+    if (torch::cuda::is_available()) {
+        std::cout << "cuda is avaliable!\n";
         device_type = torch::kCUDA;
     } else {
         device_type = torch::kCPU;
     }
 
-    std::cout<<device_type<<'\n';
+    std::cout << device_type << '\n';
     torch::Device device(device_type, 0);
     torch::jit::script::Module module_;
     try {
-        // Deserialize the ScriptModule from a file using torch::jit::load().
-        // module = torch::jit::load(argv[1]);
         module_ = torch::jit::load("../../../python/array_net_model.pt");
     } catch (const c10::Error &e) {
         std::cout << "error loading the model\n";
@@ -64,14 +60,13 @@ int main(int argc, const char *argv[])
     for (uint32_t i = 0; i < numOfCalls; i++) {
         try {
             output = module_.forward(inputs);
-        }
-        catch (const c10::Error &e) {
-            std::cout<<e.what()<<std::endl;
+        } catch (const c10::Error &e) {
+            std::cout << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
     }
     auto toc = std::chrono::steady_clock::now();
     auto loop_time = std::chrono::duration_cast<std::chrono::nanoseconds>(toc - tic).count();
-    std::cout << static_cast<double>(loop_time) / (numOfCalls * 1e6 * 1.0)<< "ms \n";
+    std::cout << static_cast<double>(loop_time) / (numOfCalls * 1e6 * 1.0) << "ms \n";
     std::cout << output << '\n';
 }

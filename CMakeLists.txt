@@ -3,8 +3,9 @@ project(cppflow_test VERSION 1.0.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 # append cmake to module path
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-# add utility functions
+# add custom utility functions
 include(utils)
+
 # find Eigen lib
 find_package(Eigen3 CONFIG REQUIRED)
 
@@ -19,6 +20,7 @@ endif()
 #     message(STATUS "tensorflow found")
 # endif()
 
+# set compile options
 string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE_)
 if (${BUILD_TYPE_} STREQUAL "debug")
     message(STATUS "build type is debug...")
@@ -40,26 +42,12 @@ endif()
 
 # message(${CPP_FLOW_HEADER_DIR})
 
-# add_library(cppflow INTERFACE)
-# target_include_directories(cppflow
-#   INTERFACE
-#     ${tensorflow_INCLUDE_DIRS}
-#     $<BUILD_INTERFACE:${CPP_FLOW_HEADER_DIR}>
-#     $<INSTALL_INTERFACE:include>
-# )
-# target_compile_features(cppflow INTERFACE cxx_std_17)
-# target_link_libraries(cppflow INTERFACE
-#   ${tensorflow_LIBRARIES}
-# )
 
-# find pytorch lib
+# need to manualy add torch cmake file to the prefix path so that find_package can function
+# properly
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.local/lib/python3.6/site-packages/torch/share/cmake")
 find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
-
-
-# # lib
-# #add_subdirectory(lib)
 
 # # add src directory
 add_subdirectory(src)
