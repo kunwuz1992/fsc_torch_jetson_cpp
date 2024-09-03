@@ -2,7 +2,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
-A tutorial and sample code for running a pytorch nerual network using c++ on Nvidia jetson nano computer
+A tutorial and sample code for running a pytorch nerual network using c++ on Nvidia jetson nano computer.
 
 # Author 
 
@@ -10,15 +10,15 @@ Dr. Longhao Qian
 
 # How to use
 
-- read this tutorial about how to correctly install pytorch c++ lib on jetson nano
+- Read this [tutorial](documents//install_libtorch_jetson.md) about how to correctly install pytorch c++ lib on jetson nano.
 
-- run the following command to verify whether pytorch c++ lib function correctly
+- Run the ``python/verify_pytorch.py`` to verify whether pytorch c++ lib function correctly.
 
 - run to train a simple neural network and save the trained network to ``.pt`` weights file.
 
 - run to compile the ``src/pytorchTest/pytorch_load_test.cpp`` and ``src/pytorchTest/pytorch_load_test_gpu.cpp`` to get the execution files.
 
-- run to and observe the results
+- run to ``build_release/pytorchTest/pytorch_load_test_gpu`` and ``build_release/pytorchTest/pytorch_load_test`` and observe the results.
 
 # CMake settings
 
